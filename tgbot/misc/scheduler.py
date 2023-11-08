@@ -14,9 +14,9 @@ class CreateTask:
         conversations = await VkApi.get_messages()
         for conv in conversations:
             conv_utc_dtime = datetime.fromtimestamp(conv["last_message"]["date"])
-            logger.warning(conv_utc_dtime)
-            logger.warning(datetime.utcnow() - timedelta(seconds=15.3))
-            if conv_utc_dtime > datetime.utcnow() - timedelta(seconds=15.3):
+            # logger.warning(conv_utc_dtime)
+            # logger.warning(datetime.utcnow() - timedelta(seconds=15.3))
+            if conv_utc_dtime > datetime.utcnow() - timedelta(seconds=30.5):
                 user_id = conv["conversation"]["peer"]["id"]
                 username = await VkApi.get_user(user_id=user_id)
                 text = conv["last_message"]["text"]
@@ -29,5 +29,5 @@ class CreateTask:
     async def create_task(cls):
         scheduler.add_job(func=cls.__check_conversations,
                           trigger="interval",
-                          seconds=15,
+                          seconds=30,
                           misfire_grace_time=None)
