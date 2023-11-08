@@ -19,7 +19,6 @@ user_router = [
 
 async def main():
     logger.info("Starting bot")
-    rds.redis_start()
     dp.include_routers(
         *admin_router,
         *user_router,
