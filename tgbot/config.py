@@ -26,6 +26,12 @@ class TgBot:
 
 
 @dataclass
+class Vk:
+    token: str
+    group: int
+
+
+@dataclass
 class Miscellaneous:
     admin_group: str
 
@@ -36,6 +42,7 @@ class Config:
     db: DbConfig
     rds: RedisConfig
     misc: Miscellaneous
+    vk: Vk
 
 
 def load_config(path: str = None):
@@ -58,6 +65,10 @@ def load_config(path: str = None):
             host=env.str('REDIS_HOST'),
             port=env.str('REDIS_PORT'),
             db=env.str('REDIS_DB')
+        ),
+        vk=Vk(
+            token=env.str("VK_TOKEN"),
+            group=env.int("VK_GROUP_ID")
         ),
         misc=Miscellaneous(
             admin_group=env.str('ADMIN_GROUP')
