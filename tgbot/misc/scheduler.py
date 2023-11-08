@@ -22,8 +22,8 @@ class CreateTask:
                 text = conv["last_message"]["text"]
                 msg_text = f"Новое сообщение от {username}\n---\n{text}"
                 for admin in admins:
+                    logger.warning(admin)
                     await bot.send_message(chat_id=admin, text=msg_text)
-                    break
 
     @classmethod
     async def create_task(cls):
