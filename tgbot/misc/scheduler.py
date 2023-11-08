@@ -20,7 +20,7 @@ class CreateTask:
                 user_id = conv["conversation"]["peer"]["id"]
                 username = await VkApi.get_user(user_id=user_id)
                 text = conv["last_message"]["text"]
-                msg_text = f"Новое сообщение от {username}\n---\n{text}"
+                msg_text = f"🐟 Новое сообщение от {username}\n---\n{text}"
                 for admin in admins:
                     logger.warning(admin)
                     await bot.send_message(chat_id=admin, text=msg_text)
