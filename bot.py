@@ -5,7 +5,7 @@ from tgbot.handlers.admin.main_block import router as admin_main_block
 from tgbot.handlers.user.main_block import router as user_main_block
 
 from create_bot import bot, dp, scheduler, logger, register_global_middlewares, config
-
+from tgbot.misc.scheduler import CreateTask
 
 admin_router = [
     admin_main_block,
@@ -26,6 +26,9 @@ async def main():
     )
 
     try:
+        scheduler.remove_all_jobs()
+        await CreateTask.create_task()
+        scheduler.start()
         register_global_middlewares(dp, config)
         # await bot.delete_webhook(drop_pending_updates=True)
         await dp.start_polling(bot)
