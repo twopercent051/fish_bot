@@ -44,10 +44,8 @@ class VkApi:
 
 
 async def main():
-    await VkApi.get_group_name()
-    # print(datetime.fromtimestamp(1698693211))
-    # print(datetime.utcnow().timestamp())
-
+    a = await VkApi.get_messages()
+    print(a)
 
 if __name__ == "__main__":
     asyncio.run(main())
