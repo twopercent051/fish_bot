@@ -13,7 +13,7 @@ class CreateTask:
     async def __check_conversations():
         conversations = await VkApi.get_messages()
         for conv in conversations:
-            conv_utc_dtime = datetime.fromtimestamp(conv["last_message"]["date"]) - timedelta(hours=3)
+            conv_utc_dtime = datetime.fromtimestamp(conv["last_message"]["date"])
             logger.warning(conv_utc_dtime)
             logger.warning(datetime.utcnow() - timedelta(seconds=15.3))
             if conv_utc_dtime > datetime.utcnow() - timedelta(seconds=15.3):
